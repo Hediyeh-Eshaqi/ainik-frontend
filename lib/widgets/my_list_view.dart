@@ -43,8 +43,8 @@ class _MyListViewState extends State<MyListView> {
                   onPressed: () {},
                   child: Text("مشاهده همه"),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AinikColors["danger"],
-                    foregroundColor: Colors.white,
+                    backgroundColor: AinikColors["warning"],
+                    foregroundColor: Colors.black,
                   ),
                 )
               ],

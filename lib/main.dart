@@ -1,3 +1,4 @@
+import 'package:ainik_frontend/pages/login_register.dart';
 import 'package:ainik_frontend/widgets/custom_app_bar.dart';
 import 'package:ainik_frontend/widgets/custom_bottom_app_bar.dart';
 import 'package:ainik_frontend/pages/home_page.dart';
@@ -13,13 +14,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'آینیک',
-      home: Directionality(
+      home: const Directionality(
         textDirection: TextDirection.rtl,
         child: AInik(title: "آینیک"),
       ),
+      routes: {
+        LoginRegister.routeName: (_) => LoginRegister(),
+      },
     );
   }
 }

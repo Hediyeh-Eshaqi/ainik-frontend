@@ -1,4 +1,5 @@
 import 'package:ainik_frontend/common/colors.dart';
+import 'package:ainik_frontend/pages/login_register.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatefulWidget {
@@ -54,22 +55,24 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 ),
               ],
             ),
-            // const Spacer(),
-            // Row(
-            //   children: const [
-            //     Icon(
-            //       Icons.person,
-            //       color: Colors.white,
-            //     ),
-            //     Text(
-            //       "پروفایل",
-            //       style: TextStyle(color: Colors.white),
-            //     ),
-            //   ],
-            // ),
+            const Spacer(),
+            Row(
+              children: const [
+                Icon(
+                  Icons.person,
+                  color: Colors.white,
+                ),
+                Text(
+                  "پروفایل",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
             const Spacer(),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(LoginRegister.routeName);
+              },
               child: Text("ورود/ثبت نام"),
               style: OutlinedButton.styleFrom(
                 backgroundColor: AinikColors["warning"],
@@ -102,15 +105,17 @@ class _CustomAppBarState extends State<CustomAppBar> {
               Icon(Icons.person_4_outlined, color: Colors.white),
             ],
           ),
-          // const Spacer(),
-          // Row(
-          //   children: const [
-          //     Icon(Icons.person, color: Colors.white),
-          //   ],
-          // ),
+          const Spacer(),
+          Row(
+            children: const [
+              Icon(Icons.person, color: Colors.white),
+            ],
+          ),
           const Spacer(),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(LoginRegister.routeName);
+            },
             child: Text("ورود/ثبت نام"),
             style: OutlinedButton.styleFrom(
               backgroundColor: AinikColors["warning"],

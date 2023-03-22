@@ -1,3 +1,4 @@
+import 'package:ainik_frontend/pages/login_register.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
@@ -30,7 +31,14 @@ class CustomBottomAppBar extends StatelessWidget {
             onPressed: () {},
             icon: const Icon(Icons.person_4_outlined),
           ),
-          const Spacer()
+          const Spacer(),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(LoginRegister.routeName);
+            },
+            icon: Icon(Icons.login),
+          ),
+          const Spacer(),
         ],
       ),
     );

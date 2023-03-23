@@ -1,16 +1,37 @@
 import 'package:ainik_frontend/common/colors.dart';
+import 'package:ainik_frontend/widgets/charity_card.dart';
+import 'package:ainik_frontend/widgets/helper_card.dart';
 import 'package:flutter/material.dart';
 
 class MyListView extends StatefulWidget {
   String firstItem;
   Icon icon;
-  MyListView({super.key, required this.firstItem, required this.icon});
+  String type;
+  MyListView(
+      {super.key,
+      required this.firstItem,
+      required this.icon,
+      required this.type});
 
   @override
   State<MyListView> createState() => _MyListViewState();
 }
 
 class _MyListViewState extends State<MyListView> {
+  var items = const [
+    CharityCard(picPath: "lib/assets/images/charity1.png", name: "خیریه اول"),
+    CharityCard(picPath: "lib/assets/images/charity2.jpeg", name: "خیریه دوم"),
+    CharityCard(picPath: "lib/assets/images/charity3.jpeg", name: "خیریه سوم"),
+    CharityCard(
+        picPath: "lib/assets/images/charity4.jpeg", name: "خیریه چهارم"),
+  ];
+
+  var helper = const [
+    HelperCard(picPath: "lib/assets/images/user1.png", name: "نیکوکار اول"),
+    HelperCard(picPath: "lib/assets/images/user2.png", name: "نیکوکار دوم"),
+    HelperCard(picPath: "lib/assets/images/user3.png", name: "نیکوکار سوم"),
+    HelperCard(picPath: "lib/assets/images/user4.png", name: "نیکوکار چهارم"),
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,62 +71,50 @@ class _MyListViewState extends State<MyListView> {
               ],
             ),
           ),
-          Container(
-            // color: Colors.cyan,
-            margin: EdgeInsets.all(10),
-            width: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-            ),
-            child: Center(
-                child: Text(
-              widget.firstItem,
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            )),
-          ),
-          Container(
-            // color: Colors.cyan,
-            margin: EdgeInsets.all(10),
-            width: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-            ),
-            child: Center(
-                child: Text(
-              widget.firstItem,
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            )),
-          ),
-          Container(
-            // color: Colors.cyan,
-            margin: EdgeInsets.all(10),
-            width: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-            ),
-            child: Center(
-                child: Text(
-              widget.firstItem,
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            )),
-          ),
-          Container(
-            // color: Colors.cyan,
-            margin: EdgeInsets.all(10),
-            width: 300,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
-            ),
-            child: Center(
-                child: Text(
-              widget.firstItem,
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            )),
-          ),
+          widget.type == "charity"
+              ? Row(
+                  children: items.map((item) {
+                    return Container(
+                      // color: Colors.cyan,
+                      margin: EdgeInsets.all(10),
+                      width: 300,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                      ),
+                      child: item,
+                    );
+                  }).toList(),
+                )
+              : widget.type == "helper"
+                  ? Row(
+                      children: helper.map((item) {
+                        return Container(
+                          // color: Colors.cyan,
+                          margin: EdgeInsets.all(10),
+                          width: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                          ),
+                          child: item,
+                        );
+                      }).toList(),
+                    )
+                  : Row(
+                      children: items.map((item) {
+                        return Container(
+                          // color: Colors.cyan,
+                          margin: EdgeInsets.all(10),
+                          width: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                          ),
+                          child: item,
+                        );
+                      }).toList(),
+                    )
         ],
       ),
     );

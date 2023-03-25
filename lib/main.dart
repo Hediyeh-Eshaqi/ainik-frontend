@@ -1,3 +1,4 @@
+import 'package:ainik_frontend/pages/charity_page.dart';
 import 'package:ainik_frontend/pages/login_register.dart';
 import 'package:ainik_frontend/widgets/custom_app_bar.dart';
 import 'package:ainik_frontend/widgets/custom_bottom_app_bar.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         LoginRegister.routeName: (_) => LoginRegister(),
+        CharityPage.routeName: (_) => CharityPage()
       },
     );
   }

@@ -75,6 +75,10 @@ flutter:
     - lib/assets/images/user3.png
     - lib/assets/images/user4.png
     - lib/assets/images/medal.png
+    - lib/assets/images/animalHelp.jpeg
+    - lib/assets/images/childHelp.jpeg
+    - lib/assets/images/childsPhelp.jpeg
+    - lib/assets/images/natureHelp.jpeg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

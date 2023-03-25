@@ -1,5 +1,6 @@
 import 'package:ainik_frontend/common/colors.dart';
 import 'package:ainik_frontend/widgets/charity_card.dart';
+import 'package:ainik_frontend/widgets/charity_work.dart';
 import 'package:ainik_frontend/widgets/helper_card.dart';
 import 'package:flutter/material.dart';
 
@@ -31,6 +32,19 @@ class _MyListViewState extends State<MyListView> {
     HelperCard(picPath: "lib/assets/images/user2.png", name: "نیکوکار دوم"),
     HelperCard(picPath: "lib/assets/images/user3.png", name: "نیکوکار سوم"),
     HelperCard(picPath: "lib/assets/images/user4.png", name: "نیکوکار چهارم"),
+  ];
+
+  var works = const [
+    CharityWork(
+        picPath: "lib/assets/images/animalHelp.jpeg", name: "کمک به حیوانات"),
+    CharityWork(
+        picPath: "lib/assets/images/natureHelp.jpeg", name: "کمک به طبیعت"),
+    CharityWork(
+        picPath: "lib/assets/images/childHelp.jpeg",
+        name: "کمک به کودکان بیمار"),
+    CharityWork(
+        picPath: "lib/assets/images/childsPhelp.jpeg",
+        name: "کمک به کودکان بی سرپرست"),
   ];
   @override
   Widget build(BuildContext context) {
@@ -102,7 +116,7 @@ class _MyListViewState extends State<MyListView> {
                       }).toList(),
                     )
                   : Row(
-                      children: items.map((item) {
+                      children: works.map((item) {
                         return Container(
                           // color: Colors.cyan,
                           margin: EdgeInsets.all(10),

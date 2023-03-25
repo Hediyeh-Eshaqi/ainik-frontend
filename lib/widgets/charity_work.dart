@@ -1,16 +1,15 @@
 import 'package:ainik_frontend/common/colors.dart';
-import 'package:ainik_frontend/pages/charity_page.dart';
 import 'package:flutter/material.dart';
 
-class CharityCard extends StatefulWidget {
-  const CharityCard({super.key, required this.picPath, required this.name});
+class CharityWork extends StatefulWidget {
+  const CharityWork({super.key, required this.picPath, required this.name});
   final String picPath;
   final String name;
   @override
-  State<CharityCard> createState() => _CharityCardState();
+  State<CharityWork> createState() => _CharityWorkState();
 }
 
-class _CharityCardState extends State<CharityCard> {
+class _CharityWorkState extends State<CharityWork> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,18 +31,12 @@ class _CharityCardState extends State<CharityCard> {
             widget.name,
             style: TextStyle(fontSize: 20, color: AinikColors["info"]),
           ),
+          Text(
+            "ایجاد شده توسط خیریه نام خیریه",
+            style: TextStyle(fontSize: 16, color: AinikColors["danger"]),
+          ),
           const SizedBox(
             height: 10,
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AinikColors["secondary"],
-              foregroundColor: Colors.black,
-            ),
-            onPressed: () {
-              Navigator.of(context).pushNamed(CharityPage.routeName);
-            },
-            child: const Text("مشاهده"),
           ),
         ],
       ),

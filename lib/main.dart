@@ -1,5 +1,7 @@
+import 'package:ainik_frontend/common/methods.dart';
 import 'package:ainik_frontend/pages/charity_page.dart';
 import 'package:ainik_frontend/pages/login_register.dart';
+import 'package:ainik_frontend/pages/profile.dart';
 import 'package:ainik_frontend/widgets/custom_app_bar.dart';
 import 'package:ainik_frontend/widgets/custom_bottom_app_bar.dart';
 import 'package:ainik_frontend/pages/home_page.dart';
@@ -24,7 +26,8 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         LoginRegister.routeName: (_) => LoginRegister(),
-        CharityPage.routeName: (_) => CharityPage()
+        CharityPage.routeName: (_) => CharityPage(),
+        Profile.routename: (_) => Profile(),
       },
     );
   }
@@ -42,26 +45,17 @@ class _AInikState extends State<AInik> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-
-    String getDeviceType() {
-      if (width < 481) {
-        return "Mobile";
-      } else if (width > 480 && width < 769) {
-        return "Tablet";
-      }
-      return "Laptop";
-    }
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
         child: CustomAppBar(
-          device: getDeviceType(),
+          device: Methods.getDeviceType(width),
         ),
       ),
       body: const HomePage(),
-      bottomNavigationBar:
-          getDeviceType() == 'Mobile' ? const CustomBottomAppBar() : null,
+      bottomNavigationBar: Methods.getDeviceType(width) == 'Mobile'
+          ? const CustomBottomAppBar()
+          : null,
     );
   }
 }

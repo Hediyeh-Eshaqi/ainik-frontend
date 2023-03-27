@@ -1,5 +1,7 @@
 import 'package:ainik_frontend/common/colors.dart';
 import 'package:ainik_frontend/pages/login_register.dart';
+import 'package:ainik_frontend/pages/profile.dart';
+import 'package:ainik_frontend/widgets/custom_bottomappbar_button.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatefulWidget {
@@ -26,47 +28,28 @@ class _CustomAppBarState extends State<CustomAppBar> {
         backgroundColor: AinikColors["primary"],
         title: Row(
           children: [
-            Row(
-              children: const [
-                Icon(Icons.home, color: Colors.white),
-                Text(
-                  "آینیک",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
+            CustomAppBarButton(
+              icon: Icons.home,
+              text: "آینیک",
+              onpress: Profile.routename,
             ),
             const Spacer(),
-            Row(
-              children: const [
-                Icon(Icons.house, color: Colors.white),
-                Text(
-                  "خیریه ها",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
+            CustomAppBarButton(
+              icon: Icons.house,
+              text: "خیریه ها",
+              onpress: Profile.routename,
             ),
             const Spacer(),
-            Row(
-              children: const [
-                Icon(Icons.person_4_outlined, color: Colors.white),
-                Text(
-                  "خیر ها",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
+            CustomAppBarButton(
+              icon: Icons.person_4_outlined,
+              text: "خیر ها",
+              onpress: Profile.routename,
             ),
             const Spacer(),
-            Row(
-              children: const [
-                Icon(
-                  Icons.person,
-                  color: Colors.white,
-                ),
-                Text(
-                  "پروفایل",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
+            CustomAppBarButton(
+              icon: Icons.person,
+              text: "پروفایل",
+              onpress: Profile.routename,
             ),
             const Spacer(),
             OutlinedButton(
@@ -107,8 +90,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
           ),
           const Spacer(),
           Row(
-            children: const [
-              Icon(Icons.person, color: Colors.white),
+            children: [
+              TextButton(
+                child: Icon(Icons.person, color: Colors.white),
+                onPressed: () {
+                  Navigator.of(context).pushNamed(Profile.routename);
+                },
+              ),
             ],
           ),
           const Spacer(),

@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
               color: Color.fromARGB(255, 241, 91, 181),
               size: 100,
             ),
-            firstItem: "برترین خیر ها",
+            firstItem: " نیکوکار ها",
           ),
           const SizedBox(
             height: 20,
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
               color: Color.fromARGB(255, 241, 91, 181),
               size: 100,
             ),
-            firstItem: "برترین خیریه ها",
+            firstItem: " خیریه ها",
           ),
         ],
       ),

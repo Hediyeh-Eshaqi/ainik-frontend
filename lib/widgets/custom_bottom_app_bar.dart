@@ -1,4 +1,5 @@
 import 'package:ainik_frontend/pages/login_register.dart';
+import 'package:ainik_frontend/pages/profile.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomAppBar extends StatelessWidget {
@@ -18,7 +19,9 @@ class CustomBottomAppBar extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(Profile.routename);
+            },
             icon: const Icon(Icons.person),
           ),
           const Spacer(),

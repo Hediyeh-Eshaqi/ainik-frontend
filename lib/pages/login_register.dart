@@ -18,7 +18,6 @@ class _LoginRegisterState extends State<LoginRegister> {
   TextEditingController passwordController = new TextEditingController();
   TextEditingController confirmPasswordController = new TextEditingController();
   TextEditingController nameController = new TextEditingController();
-  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {
@@ -111,45 +110,6 @@ class _LoginRegisterState extends State<LoginRegister> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            "میخواهم به عنوان خیریه ثبت نام کنم",
-                            style: TextStyle(
-                                color: AinikColors["danger"], fontSize: 18),
-                          ),
-                          Checkbox(
-                            checkColor: Colors.white,
-                            fillColor:
-                                MaterialStateProperty.resolveWith(getColor),
-                            value: isChecked,
-                            onChanged: (bool? value) {
-                              setState(() {
-                                isChecked = value!;
-                              });
-                            },
-                          ),
-                        ],
-                      ),
-                      isChecked
-                          ? TextField(
-                              textAlign: TextAlign.end,
-                              controller: nameController,
-                              decoration: const InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Color.fromARGB(255, 154, 93, 229)),
-                                ),
-                                hintText: 'نام خیریه را وارد کنید',
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 154, 93, 229),
-                                  ),
-                                ),
-                              ),
-                            )
-                          : Text(""),
                       const SizedBox(
                         height: 10,
                       ),

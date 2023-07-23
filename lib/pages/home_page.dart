@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
           ),
           MyListView(
             type: "work",
-            firstItem: "کارهای خیر",
+            firstItem: "کارهای خیر پیشنهادی",
             icon: const Icon(
               Icons.ac_unit_outlined,
               color: Color.fromARGB(255, 241, 91, 181),
@@ -78,13 +78,13 @@ class _HomePageState extends State<HomePage> {
             height: 20,
           ),
           MyListView(
-            type: "helper",
+            type: "work",
             icon: const Icon(
               Icons.person_4_outlined,
               color: Color.fromARGB(255, 241, 91, 181),
               size: 100,
             ),
-            firstItem: " نیکوکار ها",
+            firstItem: "کارهای خیر",
           ),
           const SizedBox(
             height: 20,

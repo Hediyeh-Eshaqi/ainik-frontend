@@ -2,6 +2,9 @@ import 'package:ainik_frontend/common/colors.dart';
 import 'package:ainik_frontend/common/methods.dart';
 import 'package:ainik_frontend/widgets/custom_app_bar.dart';
 import 'package:ainik_frontend/widgets/custom_bottom_app_bar.dart';
+import 'package:ainik_frontend/widgets/personal_information.dart';
+import 'package:ainik_frontend/widgets/personality_information.dart';
+import 'package:ainik_frontend/widgets/user_profile_chairy.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +20,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   TextEditingController emailController = new TextEditingController();
   TextEditingController usernameController = new TextEditingController();
-
+  String activeTab = "PersonalInformation";
   @override
   void initState() {
     // TODO: implement initState
@@ -26,7 +29,6 @@ class _ProfileState extends State<Profile> {
     usernameController.text = "یوزرنیم";
   }
 
-  String dropdownValue = list.first;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -45,128 +47,85 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
         body: SingleChildScrollView(
-          child: Center(
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              constraints: BoxConstraints(maxWidth: 393),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
+            children: [
+              Container(
+                height: 75,
+                color: AinikColors["primary"],
+                child: Row(
                   children: [
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.person,
-                          size: 100,
-                        ),
-                      ],
-                    ),
-                    Text("نام:"),
-                    TextField(
-                      controller: new TextEditingController(),
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 154, 93, 229),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 154, 93, 229),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text("نام خانوادگی:"),
-                    TextField(
-                      controller: new TextEditingController(),
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 154, 93, 229),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 154, 93, 229),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text("یوزرنیم:"),
-                    TextField(
-                      readOnly: true,
-                      controller: usernameController,
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 154, 93, 229),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 154, 93, 229),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text("ایمیل:"),
-                    TextField(
-                      readOnly: true,
-                      controller: emailController,
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 154, 93, 229),
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 154, 93, 229),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Text("تایپ شخصیتی:"),
-                    DropdownButton<String>(
-                      value: dropdownValue,
-                      // icon: const Icon(Icons.arrow_downward),
-                      elevation: 16,
-                      underline: Container(
-                        height: 2,
-                        color: AinikColors["primary"],
-                      ),
-                      onChanged: (String? value) {
-                        // This is called when the user selects an item.
+                    Spacer(),
+                    TextButton(
+                      onPressed: () {
                         setState(() {
-                          dropdownValue = value!;
+                          activeTab = "PersonalInformation";
                         });
                       },
-                      items: list.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                    )
-                  ]),
-            ),
+                      child: Text(
+                        "اطلاعات شخصی",
+                        style: TextStyle(
+                            color: activeTab == "PersonalInformation"
+                                ? Colors.black
+                                : Colors.white),
+                      ),
+                      style: TextButton.styleFrom(
+                        backgroundColor: activeTab == "PersonalInformation"
+                            ? AinikColors["warning"]
+                            : AinikColors["primary"],
+                      ),
+                    ),
+                    Spacer(),
+                    TextButton(
+                      onPressed: () {
+                        setState(() {
+                          activeTab = "PersonalityInformation";
+                        });
+                      },
+                      child: Text(
+                        "اطلاعات شخصیتی",
+                        style: TextStyle(
+                            color: activeTab == "PersonalityInformation"
+                                ? Colors.black
+                                : Colors.white),
+                      ),
+                      style: TextButton.styleFrom(
+                        backgroundColor: activeTab == "PersonalityInformation"
+                            ? AinikColors["warning"]
+                            : AinikColors["primary"],
+                      ),
+                    ),
+                    Spacer(),
+                    TextButton(
+                      onPressed: () {
+                        setState(() {
+                          activeTab = "Charities";
+                        });
+                      },
+                      child: Text(
+                        "خیریه های شما",
+                        style: TextStyle(
+                            color: activeTab == "Charities"
+                                ? Colors.black
+                                : Colors.white),
+                      ),
+                      style: TextButton.styleFrom(
+                        backgroundColor: activeTab == "Charities"
+                            ? AinikColors["warning"]
+                            : AinikColors["primary"],
+                      ),
+                    ),
+                    Spacer(),
+                  ],
+                ),
+              ),
+              activeTab == "PersonalInformation"
+                  ? PersonalInformation(
+                      usernameController: usernameController,
+                      emailController: emailController)
+                  : activeTab == "PersonalityInformation"
+                      ? PersonalityInformation()
+                      : MyCharities(),
+            ],
           ),
         ),
         bottomNavigationBar: Methods.getDeviceType(width) == 'Mobile'

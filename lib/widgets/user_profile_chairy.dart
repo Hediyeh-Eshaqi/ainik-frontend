@@ -1,4 +1,5 @@
 import 'package:ainik_frontend/common/colors.dart';
+import 'package:ainik_frontend/pages/create_cahrity.dart';
 import 'package:ainik_frontend/widgets/charity_card.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,9 @@ class _MyCharitiesState extends State<MyCharities> {
           ),
           IconButton(
             color: AinikColors["danger"],
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(CreateCharity.routeName);
+            },
             icon: Icon(Icons.add),
           ),
           const SizedBox(

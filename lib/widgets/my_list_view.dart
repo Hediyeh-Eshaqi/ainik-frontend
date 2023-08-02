@@ -1,4 +1,5 @@
 import 'package:ainik_frontend/common/colors.dart';
+import 'package:ainik_frontend/pages/all_recommendeds.dart';
 import 'package:ainik_frontend/widgets/charity_card.dart';
 import 'package:ainik_frontend/widgets/charity_work.dart';
 import 'package:ainik_frontend/widgets/helper_card.dart';
@@ -75,7 +76,12 @@ class _MyListViewState extends State<MyListView> {
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 )),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    widget.type == "rwork"
+                        ? Navigator.of(context)
+                            .pushNamed(AllRecommendeds.routeName)
+                        : null;
+                  },
                   child: Text("مشاهده همه"),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AinikColors["warning"],

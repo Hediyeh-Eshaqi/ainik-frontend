@@ -1,4 +1,5 @@
 import 'package:ainik_frontend/common/methods.dart';
+import 'package:ainik_frontend/pages/all_recommendeds.dart';
 import 'package:ainik_frontend/pages/charity_page.dart';
 import 'package:ainik_frontend/pages/create_cahrity.dart';
 import 'package:ainik_frontend/pages/login_register.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
         LoginRegister.routeName: (_) => LoginRegister(),
         CharityPage.routeName: (_) => CharityPage(),
         Profile.routename: (_) => Profile(),
-        CreateCharity.routeName: (_) => CreateCharity()
+        CreateCharity.routeName: (_) => CreateCharity(),
+        AllRecommendeds.routeName: (_) => AllRecommendeds(),
       },
     );
   }

@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
             height: 10,
           ),
           MyListView(
-            type: "work",
+            type: "rwork",
             firstItem: "کارهای خیر پیشنهادی",
             icon: const Icon(
               Icons.ac_unit_outlined,

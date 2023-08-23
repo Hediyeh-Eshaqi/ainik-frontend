@@ -48,18 +48,8 @@ class AInik extends StatefulWidget {
 class _AInikState extends State<AInik> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60.0),
-        child: CustomAppBar(
-          device: Methods.getDeviceType(width),
-        ),
-      ),
-      body: const HomePage(),
-      bottomNavigationBar: Methods.getDeviceType(width) == 'Mobile'
-          ? const CustomBottomAppBar()
-          : null,
+    return const Scaffold(
+      body: LoginRegister(),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:ainik_frontend/common/colors.dart';
 import 'package:ainik_frontend/common/methods.dart';
 import 'package:ainik_frontend/widgets/charity_work.dart';
 import 'package:ainik_frontend/widgets/custom_app_bar.dart';
+import 'package:ainik_frontend/widgets/custom_bottom_app_bar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -65,6 +66,10 @@ class _AllRecommendedsState extends State<AllRecommendeds> {
             ),
           ),
         ),
+        bottomNavigationBar:
+            Methods.getDeviceType(MediaQuery.of(context).size.width) == 'Mobile'
+                ? const CustomBottomAppBar()
+                : null,
       ),
     );
   }

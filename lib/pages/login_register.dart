@@ -1,4 +1,6 @@
+import 'package:ainik_frontend/apis/apis.dart';
 import 'package:ainik_frontend/common/colors.dart';
+import 'package:ainik_frontend/pages/home_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -14,10 +16,13 @@ class _LoginRegisterState extends State<LoginRegister> {
   String activePart = "ورود";
   TextStyle defaultStyle = TextStyle(color: Colors.grey, fontSize: 20.0);
   TextStyle linkStyle = TextStyle(color: AinikColors["danger"]);
+  TextEditingController remailcontroller = new TextEditingController();
+  TextEditingController rpasswordcontroller = new TextEditingController();
+  TextEditingController rconfirmpasswordcontroller =
+      new TextEditingController();
   TextEditingController usernameController = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
-  TextEditingController confirmPasswordController = new TextEditingController();
-  TextEditingController nameController = new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {
@@ -53,15 +58,15 @@ class _LoginRegisterState extends State<LoginRegister> {
                         height: 40,
                       ),
                       TextField(
-                        textAlign: TextAlign.end,
-                        controller: usernameController,
+                        textAlign: TextAlign.start,
+                        controller: remailcontroller,
                         decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color.fromARGB(255, 154, 93, 229),
                             ),
                           ),
-                          hintText: 'یوزرنیم خود را وارد کنید',
+                          hintText: 'ایمیل خود را وارد کنید',
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Color.fromARGB(255, 154, 93, 229),
@@ -73,8 +78,8 @@ class _LoginRegisterState extends State<LoginRegister> {
                         height: 10,
                       ),
                       TextField(
-                        textAlign: TextAlign.end,
-                        controller: passwordController,
+                        textAlign: TextAlign.start,
+                        controller: rpasswordcontroller,
                         decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -92,8 +97,8 @@ class _LoginRegisterState extends State<LoginRegister> {
                         height: 10,
                       ),
                       TextField(
-                        textAlign: TextAlign.end,
-                        controller: confirmPasswordController,
+                        textAlign: TextAlign.start,
+                        controller: rconfirmpasswordcontroller,
                         decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
@@ -117,7 +122,22 @@ class _LoginRegisterState extends State<LoginRegister> {
                         width: 400,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            String message = await register(
+                                email: remailcontroller.text,
+                                password: rpasswordcontroller.text,
+                                rePassword: rconfirmpasswordcontroller.text);
+                            if (message == "ok") {
+                              setState(() {
+                                activePart = "ورود";
+                              });
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(message),
+                              ));
+                            }
+                          },
                           style: OutlinedButton.styleFrom(
                             backgroundColor: AinikColors["warning"],
                             foregroundColor: Colors.black,
@@ -164,7 +184,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                         height: 40,
                       ),
                       TextField(
-                        textAlign: TextAlign.end,
+                        textAlign: TextAlign.start,
                         controller: usernameController,
                         decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -184,7 +204,7 @@ class _LoginRegisterState extends State<LoginRegister> {
                         height: 10,
                       ),
                       TextField(
-                        textAlign: TextAlign.end,
+                        textAlign: TextAlign.start,
                         controller: passwordController,
                         decoration: const InputDecoration(
                           enabledBorder: OutlineInputBorder(
@@ -206,7 +226,24 @@ class _LoginRegisterState extends State<LoginRegister> {
                         width: 400,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            String message = await login(
+                                email: usernameController.text,
+                                password: passwordController.text);
+                            if (message == "ok") {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => HomePage(),
+                                ),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(message),
+                              ));
+                            }
+                          },
                           style: OutlinedButton.styleFrom(
                             backgroundColor: AinikColors["warning"],
                             foregroundColor: Colors.black,

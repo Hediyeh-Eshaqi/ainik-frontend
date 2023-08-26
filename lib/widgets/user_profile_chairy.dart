@@ -38,14 +38,18 @@ class _MyCharitiesState extends State<MyCharities> {
                 color: Color.fromARGB(255, 216, 216, 216).withOpacity(0.5),
                 padding: EdgeInsets.all(10),
                 child: CharityCard(
-                    picPath: "lib/assets/images/charity1.png", name: "نام"),
+                    id: 0,
+                    picPath: "lib/assets/images/charity1.png",
+                    name: "نام"),
               ),
               Container(
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 color: Color.fromARGB(255, 216, 216, 216).withOpacity(0.5),
                 child: CharityCard(
-                    picPath: "lib/assets/images/charity2.jpeg", name: "نام"),
+                    id: 0,
+                    picPath: "lib/assets/images/charity2.jpeg",
+                    name: "نام"),
               ),
             ],
           ),

@@ -40,3 +40,39 @@ Future<String> login({required email, required password}) async {
   print(States.UserToken);
   return message;
 }
+
+Future<List<dynamic>> allCharities({required from, required to}) async {
+  Uri uri = URLs.getAllCharitiesUrl(from, to);
+  Response response = await get(
+    uri,
+    headers: {"Authorization": "token " + States.UserToken},
+  );
+  String message;
+  List<dynamic> responseJson = [];
+  if (response.statusCode == 200) {
+    message = "ok";
+    responseJson = json.decode(utf8.decode(response.bodyBytes));
+  } else {
+    message = "not ok";
+  }
+
+  return responseJson;
+}
+
+Future<List<dynamic>> allCharitiesWork({required from, required to}) async {
+  Uri uri = URLs.getAllCharitieWorksUrl(from, to);
+  Response response = await get(
+    uri,
+    headers: {"Authorization": "token " + States.UserToken},
+  );
+  String message;
+  List<dynamic> responseJson = [];
+  if (response.statusCode == 200) {
+    message = "ok";
+    responseJson = json.decode(utf8.decode(response.bodyBytes));
+  } else {
+    message = "not ok";
+  }
+
+  return responseJson;
+}

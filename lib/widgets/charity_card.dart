@@ -3,9 +3,15 @@ import 'package:ainik_frontend/pages/charity_page.dart';
 import 'package:flutter/material.dart';
 
 class CharityCard extends StatefulWidget {
-  const CharityCard({super.key, required this.picPath, required this.name});
+  CharityCard({
+    super.key,
+    required this.picPath,
+    required this.name,
+    required this.id,
+  });
   final String picPath;
   final String name;
+  int id;
   @override
   State<CharityCard> createState() => _CharityCardState();
 }

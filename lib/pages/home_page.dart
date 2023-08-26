@@ -1,3 +1,4 @@
+import 'package:ainik_frontend/apis/apis.dart';
 import 'package:ainik_frontend/common/colors.dart';
 import 'package:ainik_frontend/common/methods.dart';
 import 'package:ainik_frontend/widgets/custom_app_bar.dart';
@@ -14,6 +15,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List charities = [];
+  List charitiesWorks = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadData();
+  }
+
+  Future<void> loadData() async {
+    await allCharities(from: "0", to: "5").then(
+      (value) => this.setState(
+        () {
+          charities = value;
+        },
+      ),
+    );
+    await allCharitiesWork(from: "0", to: "5").then(
+      (value) => this.setState(
+        () {
+          charitiesWorks = value;
+        },
+      ),
+    );
+    print(charitiesWorks);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -78,6 +106,7 @@ class _HomePageState extends State<HomePage> {
                 height: 10,
               ),
               MyListView(
+                items: charitiesWorks,
                 type: "rwork",
                 firstItem: "کارهای خیر پیشنهادی",
                 icon: const Icon(
@@ -90,6 +119,7 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               MyListView(
+                items: charitiesWorks,
                 type: "work",
                 icon: const Icon(
                   Icons.person_4_outlined,
@@ -102,6 +132,7 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               MyListView(
+                items: charities,
                 type: "charity",
                 icon: const Icon(
                   Icons.house,

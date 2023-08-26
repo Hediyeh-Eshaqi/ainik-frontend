@@ -9,24 +9,26 @@ class MyListView extends StatefulWidget {
   String firstItem;
   Icon icon;
   String type;
-  MyListView(
-      {super.key,
-      required this.firstItem,
-      required this.icon,
-      required this.type});
-
+  MyListView({
+    super.key,
+    required this.firstItem,
+    required this.icon,
+    required this.type,
+    required this.items,
+  });
+  List items;
   @override
   State<MyListView> createState() => _MyListViewState();
 }
 
 class _MyListViewState extends State<MyListView> {
-  var items = const [
-    CharityCard(picPath: "lib/assets/images/charity1.png", name: "خیریه اول"),
-    CharityCard(picPath: "lib/assets/images/charity2.jpeg", name: "خیریه دوم"),
-    CharityCard(picPath: "lib/assets/images/charity3.jpeg", name: "خیریه سوم"),
-    CharityCard(
-        picPath: "lib/assets/images/charity4.jpeg", name: "خیریه چهارم"),
-  ];
+  // var items = const [
+  //   CharityCard(picPath: "lib/assets/images/charity1.png", name: "خیریه اول"),
+  //   CharityCard(picPath: "lib/assets/images/charity2.jpeg", name: "خیریه دوم"),
+  //   CharityCard(picPath: "lib/assets/images/charity3.jpeg", name: "خیریه سوم"),
+  //   CharityCard(
+  //       picPath: "lib/assets/images/charity4.jpeg", name: "خیریه چهارم"),
+  // ];
 
   var helper = const [
     HelperCard(picPath: "lib/assets/images/user1.png", name: "نیکوکار اول"),
@@ -35,18 +37,18 @@ class _MyListViewState extends State<MyListView> {
     HelperCard(picPath: "lib/assets/images/user4.png", name: "نیکوکار چهارم"),
   ];
 
-  var works = const [
-    CharityWork(
-        picPath: "lib/assets/images/animalHelp.jpeg", name: "کمک به حیوانات"),
-    CharityWork(
-        picPath: "lib/assets/images/natureHelp.jpeg", name: "کمک به طبیعت"),
-    CharityWork(
-        picPath: "lib/assets/images/childHelp.jpeg",
-        name: "کمک به کودکان بیمار"),
-    CharityWork(
-        picPath: "lib/assets/images/childsPhelp.jpeg",
-        name: "کمک به کودکان بی سرپرست"),
-  ];
+  // var works = const [
+  //   CharityWork(
+  //       picPath: "lib/assets/images/animalHelp.jpeg", name: "کمک به حیوانات"),
+  //   CharityWork(
+  //       picPath: "lib/assets/images/natureHelp.jpeg", name: "کمک به طبیعت"),
+  //   CharityWork(
+  //       picPath: "lib/assets/images/childHelp.jpeg",
+  //       name: "کمک به کودکان بیمار"),
+  //   CharityWork(
+  //       picPath: "lib/assets/images/childsPhelp.jpeg",
+  //       name: "کمک به کودکان بی سرپرست"),
+  // ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -93,7 +95,7 @@ class _MyListViewState extends State<MyListView> {
           ),
           widget.type == "charity"
               ? Row(
-                  children: items.map((item) {
+                  children: widget.items.map((item) {
                     return Container(
                       // color: Colors.cyan,
                       margin: EdgeInsets.all(10),
@@ -102,7 +104,10 @@ class _MyListViewState extends State<MyListView> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
                       ),
-                      child: item,
+                      child: CharityCard(
+                          id: item["id"],
+                          name: item["name"],
+                          picPath: "lib/assets/common/charity.png"),
                     );
                   }).toList(),
                 )
@@ -122,7 +127,7 @@ class _MyListViewState extends State<MyListView> {
                       }).toList(),
                     )
                   : Row(
-                      children: works.map((item) {
+                      children: widget.items.map((item) {
                         return Container(
                           // color: Colors.cyan,
                           margin: EdgeInsets.all(10),
@@ -131,7 +136,10 @@ class _MyListViewState extends State<MyListView> {
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.white,
                           ),
-                          child: item,
+                          child: CharityWork(
+                            name: item["title"],
+                            picPath: "lib/assets/images/childsPhelp.jpeg",
+                          ),
                         );
                       }).toList(),
                     )

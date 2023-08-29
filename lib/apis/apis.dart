@@ -76,3 +76,40 @@ Future<List<dynamic>> allCharitiesWork({required from, required to}) async {
 
   return responseJson;
 }
+
+Future<String> createCharity(
+    {required name, required address, required description}) async {
+  Uri uri = URLs.getCreateCharityUrl();
+  Response response = await post(
+    uri,
+    body: {
+      "name": name,
+      "address": address,
+      "description": description,
+    },
+    headers: {"Authorization": "token " + States.UserToken},
+  );
+  String message;
+
+  if (response.statusCode == 201) {
+    message = "ok";
+  } else {
+    message = "not ok";
+  }
+
+  return message;
+}
+
+Future<List<dynamic>> myCharities() async {
+  Uri uri = URLs.getMyCharitesUrl();
+  Response response = await get(
+    uri,
+    headers: {"Authorization": "token " + States.UserToken},
+  );
+  List<dynamic> responseJson = [];
+  if (response.statusCode == 200) {
+    responseJson = json.decode(utf8.decode(response.bodyBytes));
+  }
+
+  return responseJson;
+}

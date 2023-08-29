@@ -105,6 +105,7 @@ class _MyListViewState extends State<MyListView> {
                         color: Colors.white,
                       ),
                       child: CharityCard(
+                          canEdit: false,
                           id: item["id"],
                           name: item["name"],
                           picPath: "lib/assets/common/charity.png"),

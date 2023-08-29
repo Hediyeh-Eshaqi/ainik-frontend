@@ -1,3 +1,4 @@
+import 'package:ainik_frontend/apis/apis.dart';
 import 'package:ainik_frontend/common/colors.dart';
 import 'package:ainik_frontend/common/methods.dart';
 import 'package:ainik_frontend/widgets/custom_app_bar.dart';
@@ -115,7 +116,15 @@ class _CreateCharityState extends State<CreateCharity> {
                       width: 400,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          var message = await createCharity(
+                              name: nameController.text,
+                              address: addressController.text,
+                              description: descriptionController.text);
+                          if (message == "ok") {
+                            Navigator.pop(context);
+                          }
+                        },
                         style: OutlinedButton.styleFrom(
                           backgroundColor: AinikColors["secondary"],
                           foregroundColor: Colors.black,

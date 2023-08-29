@@ -4,6 +4,8 @@ class URLs {
   static String loginUrl = "/auth/token/login/";
   static String allCharitiesUrl = "/charity/list?";
   static String allCharitiesWorkUrl = "/charity/charity_work/list?";
+  static String createCharityUrl = "/charity/create";
+  static String myCharitiesUrl = "/user/charites/";
   static getRegisterUrl() {
     return Uri.parse(baseUrl + registerUrl);
   }
@@ -19,5 +21,13 @@ class URLs {
   static getAllCharitieWorksUrl(String from, String to) {
     return Uri.parse(
         baseUrl + allCharitiesWorkUrl + "from=" + from + "&to=" + to);
+  }
+
+  static getCreateCharityUrl() {
+    return Uri.parse(baseUrl + createCharityUrl);
+  }
+
+  static getMyCharitesUrl() {
+    return Uri.parse(baseUrl + myCharitiesUrl);
   }
 }

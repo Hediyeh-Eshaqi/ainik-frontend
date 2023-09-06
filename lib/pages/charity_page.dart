@@ -168,6 +168,7 @@ class _CharityPageState extends State<CharityPage> {
                       color: Colors.white,
                       padding: EdgeInsets.all(10),
                       child: CharityWork(
+                          id: 1,
                           picPath: "lib/assets/images/charity1.png",
                           name: "نام"),
                     ),
@@ -177,6 +178,7 @@ class _CharityPageState extends State<CharityPage> {
                           EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                       color: Colors.white,
                       child: CharityWork(
+                          id: 1,
                           picPath: "lib/assets/images/charity2.jpeg",
                           name: "نام"),
                     ),

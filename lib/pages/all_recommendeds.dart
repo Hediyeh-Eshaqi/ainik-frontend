@@ -42,6 +42,7 @@ class _AllRecommendedsState extends State<AllRecommendeds> {
                     color: Color.fromARGB(255, 216, 216, 216).withOpacity(0.5),
                     padding: EdgeInsets.all(10),
                     child: CharityWork(
+                        id: 0,
                         name: "کمک به حیوانات",
                         picPath: "lib/assets/images/animalHelp.jpeg"),
                   ),
@@ -50,6 +51,7 @@ class _AllRecommendedsState extends State<AllRecommendeds> {
                     margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     color: Color.fromARGB(255, 216, 216, 216).withOpacity(0.5),
                     child: CharityWork(
+                        id: 0,
                         name: "کمک به حیوانات",
                         picPath: "lib/assets/images/animalHelp.jpeg"),
                   ),
@@ -58,6 +60,7 @@ class _AllRecommendedsState extends State<AllRecommendeds> {
                     margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     color: Color.fromARGB(255, 216, 216, 216).withOpacity(0.5),
                     child: CharityWork(
+                        id: 0,
                         name: "کمک به حیوانات",
                         picPath: "lib/assets/images/animalHelp.jpeg"),
                   ),

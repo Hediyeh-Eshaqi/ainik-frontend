@@ -1,4 +1,5 @@
 import 'package:ainik_frontend/common/colors.dart';
+import 'package:ainik_frontend/common/states.dart';
 import 'package:ainik_frontend/pages/charity_page.dart';
 import 'package:ainik_frontend/pages/edit_charity.dart';
 import 'package:flutter/material.dart';
@@ -67,6 +68,7 @@ class _CharityCardState extends State<CharityCard> {
                       foregroundColor: Colors.black,
                     ),
                     onPressed: () {
+                      States.ClickedCharityID = widget.id;
                       Navigator.push(
                         context,
                         MaterialPageRoute(

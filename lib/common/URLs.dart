@@ -6,6 +6,7 @@ class URLs {
   static String allCharitiesWorkUrl = "/charity/charity_work/list?";
   static String createCharityUrl = "/charity/create";
   static String myCharitiesUrl = "/user/charites/";
+  static String charityData = "/charity/";
   static getRegisterUrl() {
     return Uri.parse(baseUrl + registerUrl);
   }
@@ -29,5 +30,22 @@ class URLs {
 
   static getMyCharitesUrl() {
     return Uri.parse(baseUrl + myCharitiesUrl);
+  }
+
+  static getCharityDataUrl(String id) {
+    return Uri.parse(baseUrl + charityData + "${id}/");
+  }
+
+  static getAddCharityWorkUrl(String id) {
+    return Uri.parse(baseUrl + charityData + id + "/addwork");
+  }
+
+  static getDeletCharityWorkUrl(String charityId, String CharityWorkID) {
+    return Uri.parse(
+        baseUrl + charityData + charityId + "/delete/" + CharityWorkID);
+  }
+
+  static getDeletCharity(String charityId) {
+    return Uri.parse(baseUrl + charityData + charityId + "/delete");
   }
 }

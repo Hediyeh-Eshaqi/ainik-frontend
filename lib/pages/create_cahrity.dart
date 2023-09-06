@@ -122,7 +122,7 @@ class _CreateCharityState extends State<CreateCharity> {
                               address: addressController.text,
                               description: descriptionController.text);
                           if (message == "ok") {
-                            Navigator.pop(context);
+                            Navigator.pop(context, true);
                           }
                         },
                         style: OutlinedButton.styleFrom(

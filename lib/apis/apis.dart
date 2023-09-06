@@ -113,3 +113,79 @@ Future<List<dynamic>> myCharities() async {
 
   return responseJson;
 }
+
+Future<Map<String, dynamic>> getCharityData() async {
+  Uri uri = URLs.getCharityDataUrl(States.ClickedCharityID.toString());
+  Response response = await get(
+    uri,
+    headers: {"Authorization": "token " + States.UserToken},
+  );
+
+  return json.decode(utf8.decode(response.bodyBytes));
+}
+
+Future<String> addCharityWork({
+  required tittle,
+  required type,
+}) async {
+  Uri uri = URLs.getAddCharityWorkUrl(States.ClickedCharityID.toString());
+  Response response = await post(
+    uri,
+    body: jsonEncode({"title": tittle, "type": type}),
+    headers: {
+      "Authorization": "token " + States.UserToken,
+      'Content-Type': 'application/json'
+    },
+  );
+  String message;
+
+  if (response.statusCode == 201) {
+    message = "ok";
+  } else {
+    message = "not ok";
+  }
+
+  return message;
+}
+
+Future<String> DeleteCharityWork() async {
+  Uri uri = URLs.getDeletCharityWorkUrl(States.ClickedCharityID.toString(),
+      States.SelectedCharityWorkID.toString());
+  Response response = await delete(
+    uri,
+    headers: {
+      "Authorization": "token " + States.UserToken,
+      'Content-Type': 'application/json'
+    },
+  );
+  String message;
+
+  if (response.statusCode == 200) {
+    message = "ok";
+  } else {
+    message = "not ok";
+  }
+  print(message);
+  return message;
+}
+
+Future<String> DeleteCharity() async {
+  Uri uri = URLs.getDeletCharity(States.ClickedCharityID.toString());
+
+  Response response = await delete(
+    uri,
+    headers: {
+      "Authorization": "token " + States.UserToken,
+      'Content-Type': 'application/json'
+    },
+  );
+  String message;
+
+  if (response.statusCode == 200) {
+    message = "ok";
+  } else {
+    message = "not ok";
+  }
+  print(message);
+  return message;
+}

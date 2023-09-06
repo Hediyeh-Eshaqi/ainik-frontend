@@ -2,9 +2,11 @@ import 'package:ainik_frontend/common/colors.dart';
 import 'package:flutter/material.dart';
 
 class CharityWork extends StatefulWidget {
-  const CharityWork({super.key, required this.picPath, required this.name});
+  const CharityWork(
+      {super.key, required this.picPath, required this.name, required this.id});
   final String picPath;
   final String name;
+  final int id;
   @override
   State<CharityWork> createState() => _CharityWorkState();
 }

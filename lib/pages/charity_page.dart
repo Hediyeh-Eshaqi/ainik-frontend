@@ -1,3 +1,4 @@
+import 'package:ainik_frontend/apis/apis.dart';
 import 'package:ainik_frontend/common/colors.dart';
 import 'package:ainik_frontend/common/methods.dart';
 import 'package:ainik_frontend/main.dart';
@@ -16,6 +17,28 @@ class CharityPage extends StatefulWidget {
 }
 
 class _CharityPageState extends State<CharityPage> {
+  var creator = {};
+  var info = {};
+  var charity_work = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadData();
+  }
+
+  Future<void> loadData() async {
+    await getCharityData().then((value) {
+      print(value);
+      setState(() {
+        creator = value["creator"];
+        info = value["info"];
+        charity_work = value["charity_works"];
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -83,11 +106,12 @@ class _CharityPageState extends State<CharityPage> {
                         flex: 2,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text("نام خیریه: نام"),
-                            Text("تعداد کل کارهای خیر: تعداد"),
-                            Text("آدرس خیریه: آدرس"),
-                            Text("توضیحات خیریه: توضیحات")
+                          children: [
+                            Text("نام خیریه: ${info["name"]}"),
+                            Text(
+                                "تعداد کل کارهای خیر: ${charity_work.length.toString()}"),
+                            Text("آدرس خیریه: ${info["address"]}"),
+                            Text("توضیحات خیریه: ${info["description"]}")
                           ],
                         ),
                       ),
@@ -131,10 +155,10 @@ class _CharityPageState extends State<CharityPage> {
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          Text("نام: نام"),
-                          Text("نام خانوادگی: نام خانوادگی"),
-                          Text("آدرس ایمیل: آدرس ایمیل"),
+                        children: [
+                          Text("نام: ${creator["name"]}"),
+                          Text("نام خانوادگی: ${creator["lastName"]} "),
+                          Text("آدرس ایمیل: ${creator["email"]}"),
                         ],
                       ),
                     ],
@@ -162,26 +186,17 @@ class _CharityPageState extends State<CharityPage> {
                   alignment: WrapAlignment.center,
                   runSpacing: 10,
                   children: [
-                    Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      color: Colors.white,
-                      padding: EdgeInsets.all(10),
-                      child: CharityWork(
-                          id: 1,
-                          picPath: "lib/assets/images/charity1.png",
-                          name: "نام"),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      color: Colors.white,
-                      child: CharityWork(
-                          id: 1,
-                          picPath: "lib/assets/images/charity2.jpeg",
-                          name: "نام"),
-                    ),
+                    for (int i = charity_work.length - 1; i > -1; i--)
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        color: Colors.white,
+                        padding: EdgeInsets.all(10),
+                        child: CharityWork(
+                            id: charity_work[i]["id"],
+                            picPath: "lib/assets/images/charity1.png",
+                            name: charity_work[i]["title"]),
+                      ),
                   ],
                 ),
               ],

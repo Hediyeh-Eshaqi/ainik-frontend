@@ -52,6 +52,7 @@ class _CharityCardState extends State<CharityCard> {
                 foregroundColor: Colors.black,
               ),
               onPressed: () {
+                States.ClickedCharityID = widget.id;
                 Navigator.of(context).pushNamed(CharityPage.routeName);
               },
               child: const Text("مشاهده"),

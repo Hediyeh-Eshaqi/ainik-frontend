@@ -18,9 +18,19 @@ class EditCharity extends StatefulWidget {
 class _EditCharityState extends State<EditCharity> {
   TextEditingController titleController = TextEditingController();
   TextEditingController typeController = TextEditingController();
+  String type = "";
   var creator = {};
   var info = {};
   var charity_work = [];
+  String dropdownvalue = '1. کمک های بشردوستانه';
+  var items = [
+    '1. کمک های بشردوستانه',
+    '2. آموزش',
+    '3. مراقبت های بهداشتی',
+    '4. کاهش فقر',
+    '5. حفاظت از محیط زیست',
+    '6. رفاه حیوانات'
+  ];
 
   @override
   void initState() {
@@ -189,85 +199,118 @@ class _EditCharityState extends State<EditCharity> {
                     IconButton(
                       onPressed: () {
                         showModalBottomSheet(
-                          context: context,
-                          builder: (context) => Directionality(
-                            textDirection: TextDirection.rtl,
-                            child: Container(
-                              padding: EdgeInsets.all(20),
-                              height: 300,
-                              child: Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  TextField(
-                                    textAlign: TextAlign.start,
-                                    controller: titleController,
-                                    decoration: const InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 154, 93, 229),
+                            context: context,
+                            builder: (context) => StatefulBuilder(
+                                  builder: (BuildContext context, setState) {
+                                    return Directionality(
+                                      textDirection: TextDirection.rtl,
+                                      child: Container(
+                                        padding: EdgeInsets.all(20),
+                                        height: 300,
+                                        child: Column(
+                                          children: [
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            TextField(
+                                              textAlign: TextAlign.start,
+                                              controller: titleController,
+                                              decoration: const InputDecoration(
+                                                enabledBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color.fromARGB(
+                                                        255, 154, 93, 229),
+                                                  ),
+                                                ),
+                                                hintText: 'عنوان کار خیر',
+                                                focusedBorder:
+                                                    OutlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                    color: Color.fromARGB(
+                                                        255, 154, 93, 229),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            DropdownButton(
+                                              // Initial Value
+                                              value: dropdownvalue,
+                                              style: TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 154, 93, 229)),
+                                              // Down Arrow Icon
+                                              icon: const Icon(
+                                                Icons.keyboard_arrow_down,
+                                                color: Color.fromARGB(
+                                                    255, 154, 93, 229),
+                                              ),
+
+                                              // Array list of items
+                                              items: items.map((String items) {
+                                                return DropdownMenuItem(
+                                                  value: items,
+                                                  child: Directionality(
+                                                    child: Text(items),
+                                                    textDirection:
+                                                        TextDirection.rtl,
+                                                  ),
+                                                );
+                                              }).toList(),
+                                              // After selecting the desired option,it will
+                                              // change button value to selected value
+                                              onChanged: (String? newValue) {
+                                                setState(() {
+                                                  dropdownvalue = newValue!;
+                                                  type = newValue
+                                                      .toString()
+                                                      .split('.')[0];
+                                                });
+                                              },
+                                            ),
+                                            const SizedBox(
+                                              height: 30,
+                                            ),
+                                            Container(
+                                              width: 400,
+                                              height: 50,
+                                              child: ElevatedButton(
+                                                onPressed: () async {
+                                                  var message =
+                                                      await addCharityWork(
+                                                          tittle:
+                                                              titleController
+                                                                  .text,
+                                                          type: type);
+                                                  if (message == "ok") {
+                                                    loadData();
+                                                    Navigator.pop(context);
+                                                    titleController.text = "";
+                                                    type = "";
+                                                  }
+                                                },
+                                                style: OutlinedButton.styleFrom(
+                                                  backgroundColor:
+                                                      AinikColors["warning"],
+                                                  foregroundColor: Colors.black,
+                                                ),
+                                                child: const Text("افزودن"),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      hintText: 'عنوان کار خیر',
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 154, 93, 229),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  TextField(
-                                    textAlign: TextAlign.start,
-                                    controller: typeController,
-                                    decoration: const InputDecoration(
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Color.fromARGB(
-                                                255, 154, 93, 229)),
-                                      ),
-                                      hintText: 'نوع کار خیر',
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 154, 93, 229),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Container(
-                                    width: 400,
-                                    height: 50,
-                                    child: ElevatedButton(
-                                      onPressed: () async {
-                                        var message = await addCharityWork(
-                                            tittle: titleController.text,
-                                            type: typeController.text);
-                                        if (message == "ok") {
-                                          loadData();
-                                          Navigator.pop(context);
-                                          titleController.text = "";
-                                          typeController.text = "";
-                                        }
-                                      },
-                                      style: OutlinedButton.styleFrom(
-                                        backgroundColor: AinikColors["warning"],
-                                        foregroundColor: Colors.black,
-                                      ),
-                                      child: const Text("افزودن"),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                    );
+                                  },
+                                )).then(
+                          (value) => this.setState(
+                            () {
+                              dropdownvalue = '1. کمک های بشردوستانه';
+                              titleController.text = "";
+                            },
                           ),
                         );
                       },

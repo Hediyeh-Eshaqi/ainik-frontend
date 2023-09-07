@@ -96,7 +96,7 @@ Future<String> createCharity(
   } else {
     message = "not ok";
   }
-
+  States.reload.value = !States.reload.value;
   return message;
 }
 
@@ -144,7 +144,7 @@ Future<String> addCharityWork({
   } else {
     message = "not ok";
   }
-
+  States.reload.value = !States.reload.value;
   return message;
 }
 
@@ -166,6 +166,7 @@ Future<String> DeleteCharityWork() async {
     message = "not ok";
   }
   print(message);
+  States.reload.value = !States.reload.value;
   return message;
 }
 
@@ -182,6 +183,40 @@ Future<String> DeleteCharity() async {
   String message;
 
   if (response.statusCode == 200) {
+    message = "ok";
+  } else {
+    message = "not ok";
+  }
+  States.reload.value = !States.reload.value;
+  print(message);
+  return message;
+}
+
+Future<String> SetUserPersonalityComponents(var gender, var age) async {
+  Uri uri = URLs.getPersonalityCompsUrl();
+
+  Response response = await post(
+    uri,
+    body: jsonEncode({
+      "age": age,
+      "gender": gender,
+      "q1": States.userQuestionAns[0],
+      "q2": States.userQuestionAns[1],
+      "q3": States.userQuestionAns[2],
+      "q4": States.userQuestionAns[3],
+      "q5": States.userQuestionAns[4],
+      "q6": States.userQuestionAns[5],
+      "q7": States.userQuestionAns[6],
+      "q8": States.userQuestionAns[7]
+    }),
+    headers: {
+      "Authorization": "token " + States.UserToken,
+      'Content-Type': 'application/json'
+    },
+  );
+  String message;
+
+  if (response.statusCode == 201) {
     message = "ok";
   } else {
     message = "not ok";

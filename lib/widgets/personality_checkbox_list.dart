@@ -2,7 +2,14 @@ import 'package:ainik_frontend/common/colors.dart';
 import 'package:flutter/material.dart';
 
 class PersonalityCheckboxList extends StatefulWidget {
-  const PersonalityCheckboxList({super.key});
+  PersonalityCheckboxList({
+    super.key,
+    required this.onChange,
+    required this.active,
+  });
+
+  Function onChange;
+  int active;
 
   @override
   State<PersonalityCheckboxList> createState() =>
@@ -24,29 +31,65 @@ class _PersonalityCheckboxListState extends State<PersonalityCheckboxList> {
           ),
           Checkbox(
             activeColor: AinikColors["danger"],
-            value: true,
-            onChanged: (newVal) {},
+            value: widget.active == 1,
+            onChanged: (newVal) {
+              if (newVal == true) {
+                widget.onChange(100);
+              }
+            },
           ),
           Text(
             "موافقم",
             style: text_style,
           ),
-          Checkbox(value: false, onChanged: (newVal) {}),
+          Checkbox(
+            activeColor: AinikColors["danger"],
+            value: widget.active == 2,
+            onChanged: (newVal) {
+              if (newVal == true) {
+                widget.onChange(75);
+              }
+            },
+          ),
           Text(
             "نظری ندارم",
             style: text_style,
           ),
-          Checkbox(value: false, onChanged: (newVal) {}),
+          Checkbox(
+            activeColor: AinikColors["danger"],
+            value: widget.active == 3,
+            onChanged: (newVal) {
+              if (newVal == true) {
+                widget.onChange(50);
+              }
+            },
+          ),
           Text(
             "مخالفم",
             style: text_style,
           ),
-          Checkbox(value: false, onChanged: (newVal) {}),
+          Checkbox(
+            activeColor: AinikColors["danger"],
+            value: widget.active == 4,
+            onChanged: (newVal) {
+              if (newVal == true) {
+                widget.onChange(25);
+              }
+            },
+          ),
           Text(
             "کاملا مخالفم",
             style: text_style,
           ),
-          Checkbox(value: false, onChanged: (newVal) {})
+          Checkbox(
+            activeColor: AinikColors["danger"],
+            value: widget.active == 5,
+            onChanged: (newVal) {
+              if (newVal == true) {
+                widget.onChange(0);
+              }
+            },
+          )
         ],
       ),
     );

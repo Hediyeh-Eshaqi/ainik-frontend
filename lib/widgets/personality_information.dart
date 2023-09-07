@@ -1,4 +1,5 @@
 import 'package:ainik_frontend/common/colors.dart';
+import 'package:ainik_frontend/common/states.dart';
 import 'package:ainik_frontend/widgets/personality_checkbox_list.dart';
 import 'package:ainik_frontend/widgets/personality_question.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ const questionslist = [
 ];
 
 class _PersonalityInformationState extends State<PersonalityInformation> {
+  List questionAns = [0, 0, 0, 0, 0, 0, 0, 0];
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -45,7 +47,17 @@ class _PersonalityInformationState extends State<PersonalityInformation> {
               Directionality(
                 textDirection: TextDirection.rtl,
                 child: PersonalityQuestion(
-                    text: questionslist[i], i: (i + 1).toString() + ": "),
+                    onChange: (value) {
+                      var last = questionAns;
+                      last[i] = value;
+                      setState(() {
+                        questionAns = last;
+                      });
+                      print(questionAns);
+                      States.userQuestionAns = questionAns;
+                    },
+                    text: questionslist[i],
+                    i: (i + 1).toString() + ": "),
               ),
           ],
         ),

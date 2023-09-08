@@ -8,6 +8,7 @@ class URLs {
   static String myCharitiesUrl = "/user/charites/";
   static String charityData = "/charity/";
   static String personalityComps = "/user/personalityComponents/";
+  static String userInfo = "/user/edit/";
   static getRegisterUrl() {
     return Uri.parse(baseUrl + registerUrl);
   }
@@ -52,5 +53,9 @@ class URLs {
 
   static getPersonalityCompsUrl() {
     return Uri.parse(baseUrl + personalityComps);
+  }
+
+  static getUserInfoUrl() {
+    return Uri.parse(baseUrl + userInfo);
   }
 }

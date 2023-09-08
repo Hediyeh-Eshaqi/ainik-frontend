@@ -224,3 +224,42 @@ Future<String> SetUserPersonalityComponents(var gender, var age) async {
   print(message);
   return message;
 }
+
+Future<Map<String, dynamic>> GetUserInfo() async {
+  Uri uri = URLs.getUserInfoUrl();
+  Response response = await get(
+    uri,
+    headers: {"Authorization": "token " + States.UserToken},
+  );
+  String message;
+  Map<String, dynamic> responseJson = {};
+  if (response.statusCode == 200) {
+    message = "ok";
+    responseJson = json.decode(utf8.decode(response.bodyBytes));
+  } else {
+    message = "not ok";
+  }
+
+  return responseJson;
+}
+
+Future<String> EditUserInfo({required name, required lastname}) async {
+  Uri uri = URLs.getUserInfoUrl();
+  Response response = await post(
+    uri,
+    body: {
+      "name": name,
+      "lastName": lastname,
+    },
+    headers: {"Authorization": "token " + States.UserToken},
+  );
+  String message;
+
+  if (response.statusCode == 200) {
+    message = "ok";
+  } else {
+    message = "not ok";
+  }
+  States.reload.value = !States.reload.value;
+  return message;
+}

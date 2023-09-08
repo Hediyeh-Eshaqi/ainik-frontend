@@ -75,25 +75,25 @@ class _ProfileState extends State<Profile> {
                       ),
                     ),
                     Spacer(),
-                    TextButton(
-                      onPressed: () {
-                        setState(() {
-                          activeTab = "PersonalityInformation";
-                        });
-                      },
-                      child: Text(
-                        "اطلاعات شخصیتی",
-                        style: TextStyle(
-                            color: activeTab == "PersonalityInformation"
-                                ? Colors.black
-                                : Colors.white),
-                      ),
-                      style: TextButton.styleFrom(
-                        backgroundColor: activeTab == "PersonalityInformation"
-                            ? AinikColors["warning"]
-                            : AinikColors["primary"],
-                      ),
-                    ),
+                    // TextButton(
+                    //   onPressed: () {
+                    //     setState(() {
+                    //       activeTab = "PersonalityInformation";
+                    //     });
+                    //   },
+                    //   child: Text(
+                    //     "اطلاعات شخصیتی",
+                    //     style: TextStyle(
+                    //         color: activeTab == "PersonalityInformation"
+                    //             ? Colors.black
+                    //             : Colors.white),
+                    //   ),
+                    //   style: TextButton.styleFrom(
+                    //     backgroundColor: activeTab == "PersonalityInformation"
+                    //         ? AinikColors["warning"]
+                    //         : AinikColors["primary"],
+                    //   ),
+                    // ),
                     Spacer(),
                     TextButton(
                       onPressed: () {
@@ -119,9 +119,7 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
               activeTab == "PersonalInformation"
-                  ? PersonalInformation(
-                      usernameController: usernameController,
-                      emailController: emailController)
+                  ? PersonalInformation()
                   : activeTab == "PersonalityInformation"
                       ? PersonalityInformation()
                       : MyCharities(),

@@ -138,6 +138,7 @@ class _MyListViewState extends State<MyListView> {
                             color: Colors.white,
                           ),
                           child: CharityWork(
+                            charityName: item["charityName"]["name"],
                             id: 1,
                             name: item["title"],
                             picPath: "lib/assets/images/childsPhelp.jpeg",

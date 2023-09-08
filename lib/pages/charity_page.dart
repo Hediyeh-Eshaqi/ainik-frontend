@@ -156,7 +156,7 @@ class _CharityPageState extends State<CharityPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("نام: ${creator["name"]}"),
+                          Text("نام: ${creator["firstName"]}"),
                           Text("نام خانوادگی: ${creator["lastName"]} "),
                           Text("آدرس ایمیل: ${creator["email"]}"),
                         ],
@@ -193,6 +193,7 @@ class _CharityPageState extends State<CharityPage> {
                         color: Colors.white,
                         padding: EdgeInsets.all(10),
                         child: CharityWork(
+                            charityName: charity_work[i]["charityName"]["name"],
                             id: charity_work[i]["id"],
                             picPath: "lib/assets/images/charity1.png",
                             name: charity_work[i]["title"]),

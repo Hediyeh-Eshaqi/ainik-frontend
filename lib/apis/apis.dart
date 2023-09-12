@@ -17,6 +17,7 @@ Future<String> register(
   } else {
     message = response.body.toString();
   }
+  await login(email: email, password: password);
   print(message);
   return message;
 }
@@ -42,7 +43,7 @@ Future<String> login({required email, required password}) async {
 }
 
 Future<List<dynamic>> allCharities({required from, required to}) async {
-  Uri uri = URLs.getAllCharitiesUrl(from, to);
+  Uri uri = URLs.getAllCharitiesUrl(from, "100");
   Response response = await get(
     uri,
     headers: {"Authorization": "token " + States.UserToken},
@@ -60,7 +61,7 @@ Future<List<dynamic>> allCharities({required from, required to}) async {
 }
 
 Future<List<dynamic>> allCharitiesWork({required from, required to}) async {
-  Uri uri = URLs.getAllCharitieWorksUrl(from, to);
+  Uri uri = URLs.getAllCharitieWorksUrl(from, "100");
   Response response = await get(
     uri,
     headers: {"Authorization": "token " + States.UserToken},
@@ -262,4 +263,22 @@ Future<String> EditUserInfo({required name, required lastname}) async {
   }
   States.reload.value = !States.reload.value;
   return message;
+}
+
+Future<List<dynamic>> RecommendedCharitiesWork() async {
+  Uri uri = URLs.getRecommedationsUrl();
+  Response response = await get(
+    uri,
+    headers: {"Authorization": "token " + States.UserToken},
+  );
+  String message;
+  List<dynamic> responseJson = [];
+  if (response.statusCode == 200) {
+    message = "ok";
+    responseJson = json.decode(utf8.decode(response.bodyBytes));
+  } else {
+    message = "not ok";
+  }
+
+  return responseJson;
 }

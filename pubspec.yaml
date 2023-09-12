@@ -83,6 +83,12 @@ flutter:
     - lib/assets/images/createCharity.png
     - lib/assets/common/charity.png
     - lib/assets/common/helper.jpeg
+    - lib/assets/common/human.png
+    - lib/assets/common/education.png
+    - lib/assets/common/health.png
+    - lib/assets/common/proverty.png
+    - lib/assets/common/environmet.png
+    - lib/assets/common/animal.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

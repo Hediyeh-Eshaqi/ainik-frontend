@@ -18,6 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List charities = [];
   List charitiesWorks = [];
+  List recommendedWorks = [];
   @override
   void initState() {
     // TODO: implement initState
@@ -33,6 +34,11 @@ class _HomePageState extends State<HomePage> {
         .then((value) => this.setState(() {
               charitiesWorks = value;
             }));
+    await RecommendedCharitiesWork().then(
+      (value) => this.setState(() {
+        recommendedWorks = value;
+      }),
+    );
     print(charitiesWorks);
   }
 
@@ -108,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                     height: 10,
                   ),
                   MyListView(
-                    items: charitiesWorks,
+                    items: recommendedWorks,
                     type: "rwork",
                     firstItem: "کارهای خیر پیشنهادی",
                     icon: const Icon(

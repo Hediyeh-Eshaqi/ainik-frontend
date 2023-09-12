@@ -1,4 +1,5 @@
 import 'package:ainik_frontend/common/colors.dart';
+import 'package:ainik_frontend/common/methods.dart';
 import 'package:ainik_frontend/pages/all_recommendeds.dart';
 import 'package:ainik_frontend/widgets/charity_card.dart';
 import 'package:ainik_frontend/widgets/charity_work.dart';
@@ -77,19 +78,19 @@ class _MyListViewState extends State<MyListView> {
                   widget.firstItem,
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 )),
-                ElevatedButton(
-                  onPressed: () {
-                    widget.type == "rwork"
-                        ? Navigator.of(context)
-                            .pushNamed(AllRecommendeds.routeName)
-                        : null;
-                  },
-                  child: Text("مشاهده همه"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AinikColors["warning"],
-                    foregroundColor: Colors.black,
-                  ),
-                )
+                // ElevatedButton(
+                //   onPressed: () {
+                //     widget.type == "rwork"
+                //         ? Navigator.of(context)
+                //             .pushNamed(AllRecommendeds.routeName)
+                //         : null;
+                //   },
+                //   child: Text("مشاهده همه"),
+                //   style: ElevatedButton.styleFrom(
+                //     backgroundColor: AinikColors["warning"],
+                //     foregroundColor: Colors.black,
+                //   ),
+                // )
               ],
             ),
           ),
@@ -141,7 +142,7 @@ class _MyListViewState extends State<MyListView> {
                             charityName: item["charityName"]["name"],
                             id: 1,
                             name: item["title"],
-                            picPath: "lib/assets/images/childsPhelp.jpeg",
+                            picPath: getTypePic(item["type"]),
                           ),
                         );
                       }).toList(),

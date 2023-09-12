@@ -195,7 +195,7 @@ class _CharityPageState extends State<CharityPage> {
                         child: CharityWork(
                             charityName: charity_work[i]["charityName"]["name"],
                             id: charity_work[i]["id"],
-                            picPath: "lib/assets/images/charity1.png",
+                            picPath: getTypePic(charity_work[i]["type"]),
                             name: charity_work[i]["title"]),
                       ),
                   ],

@@ -8,3 +8,16 @@ class Methods {
     return "Laptop";
   }
 }
+
+String getTypePic(int type) {
+  List allPic = [
+    "",
+    "lib/assets/common/human.png",
+    "lib/assets/common/education.png",
+    "lib/assets/common/health.png",
+    "lib/assets/common/proverty.png",
+    "lib/assets/common/environmet.png",
+    "lib/assets/common/animal.png"
+  ];
+  return allPic[type];
+}

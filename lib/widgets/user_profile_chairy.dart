@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:ainik_frontend/apis/apis.dart';
 import 'package:ainik_frontend/common/colors.dart';
 import 'package:ainik_frontend/common/states.dart';
